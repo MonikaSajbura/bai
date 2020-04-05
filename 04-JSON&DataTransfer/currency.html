@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Currency</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Current exchange rates</h1>
+        <p id="EUR"></p>
+        <p id="USD"></p>
+        <p id="GBP"></p>
+
+		<script>
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var myObj = JSON.parse(this.responseText);
+                    document.getElementById("EUR").innerHTML = "EUR: " +  myObj.USD;
+                }
+                };
+                xmlhttp.open("GET", "http://api.nbp.pl/api/exchangerates/tables/a/eur", true);
+                xmlhttp.send();
+		</script>
+
+	</body>
+</html>
